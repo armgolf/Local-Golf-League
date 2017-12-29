@@ -32,5 +32,6 @@ def payment(request):
     return render(request, 'golf/payment.html', {})
 
 def customform(request):
+    rollups = Events.objects.all()
     form = PNumber()
-    return render(request, 'golf/customform.html', {'form': form})
+    return render(request, 'golf/customform.html', {'rollups':rollups, 'form': form})

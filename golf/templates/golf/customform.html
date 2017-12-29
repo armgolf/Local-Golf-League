@@ -1,6 +1,26 @@
+{% load staticfiles %}
 <html>
 
-<p>Bonjour</p>
+<head>
+  <link rel="stylesheet" href="{% static 'css/golf.css' %}">
+</head>
+
+{% for rollups in rollups %}
+<table>
+  <tr>
+    <th>{{ rollups.location }}</th>
+  </tr>
+  <tr>
+    <td>{{ rollups.datetime }}</td>
+  </tr>
+  <tr>
+    <td>{{ rollups.description }}</td>
+  </tr>
+  <tr>
+    <td>£{{ rollups.cost }}</td>
+  </tr>
+</table>
+{% endfor %}
 
 <script src="https://js.stripe.com/v3/"></script>
 
@@ -89,5 +109,7 @@
       form.submit();
     }
   </script>
+
+<a href="{% url 'landingpage' %}">Home</a>
 
 </html>
