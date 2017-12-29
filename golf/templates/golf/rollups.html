@@ -1,0 +1,31 @@
+<html>
+{% for rollups in rollups %}
+<table>
+  <tr>
+    <th>{{ rollups.location }}</th>
+  </tr>
+  <tr>
+    <td>{{ rollups.datetime }}</td>
+  </tr>
+  <tr>
+    <td>{{ rollups.description }}</td>
+  </tr>
+</table>
+<form action="/payment/" method="POST">{% csrf_token %}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_zz2EsrQt806WE4Ad2ANX5kuW"
+    data-amount="3700"
+    data-name="Golf Site"
+    data-description="Widget"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true"
+    data-currency="gbp">
+  </script>
+</form>
+{% endfor %}
+
+<a href="{% url 'landingpage' %}">Home</a>
+
+</html>

@@ -1,0 +1,27 @@
+<html>
+{% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<div class="pageheader">
+  <h1 class="sitetitle">Local Golf League - Login</h1>
+  <p><a href="{% url 'landingpage' %}">Landingpage</a></p>
+</div>
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+    <table class="Rounddata">
+    <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
+
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+</html>

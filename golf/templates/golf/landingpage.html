@@ -1,0 +1,40 @@
+<html>
+
+<p>Top Scores last week:</p>
+{% for scores in scores %}
+<table>
+  <tr>
+    <th>{{ scores.golfername }}</th>
+  </tr>
+  <tr>
+    <td>Stableford Score: {{ scores.score }}</td>
+  </tr>
+  <tr>
+    <td>LGL Handicap: {{ scores.handicap }}</td>
+  </tr>
+</table>
+{% endfor %}
+
+<p>Upcoming Events:</p>
+{% for rollups in rollups %}
+<h2>{{ rollups.name }}</h2>
+<p>{{ rollups.location }}</p>
+<p>{{ rollups.datetime }}</p>
+<p>£{{ rollups.cost }} online price</p>
+<p>(xx) spaces left</p>
+<button type="button"><a href="{% url 'rollups' %}">Sign up!</a></button>
+{% endfor %}
+<p></p>
+<p>..</p>
+<p>...</p>
+
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'register' %}">Register</a>
+
+{% if user.is_authenticated %}
+<p>Welcome - login successful</p>
+<a href="{% url 'logout' %}">Log out</a>
+{% else %}
+<p>Not loggedin yet</p>
+{% endif %}
+</html>

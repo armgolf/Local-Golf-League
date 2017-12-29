@@ -1,0 +1,23 @@
+<html>
+<div class="pageheader">
+  <h1 class="sitetitle">Local Golf League - Registration</h1>
+  <p><a href="{% url 'landingpage' %}">Landingpage</a></p>
+</div>
+
+<style>
+body {
+    background-color: white;
+}
+</style>
+
+<p></p>
+
+<form method="post" action="{% url 'register' %}">
+{% csrf_token %}
+  <table>{{ form.as_table }}</table>
+    <input type="submit" value="register" />
+    <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+<p class="para">Note: After successful registration you will be redirected to the landingpage, then please login.</p>
+</html>
