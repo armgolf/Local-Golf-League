@@ -27,3 +27,8 @@ class PNumber(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ('name', 'email', 'phone',)
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Golfer name'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Golfer email'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Golfer phone'}),
+        }

@@ -5,12 +5,12 @@
 .StripeElement {
   background-color: white;
   height: 40px;
-  padding: 10px 12px;
-  border-radius: 4px;
+  padding: 100px 12px;
+  border-radius: 40px;
   border: 1px solid transparent;
   box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
+  -webkit-transition: box-shadow 50ms ease;
+  transition: box-shadow 50ms ease;
 }
 
 .StripeElement--focus {

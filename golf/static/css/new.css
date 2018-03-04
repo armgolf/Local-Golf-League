@@ -1,0 +1,65 @@
+.pageheader {
+  background-color: Black;
+  margin-top: 0px;
+  padding: 20px 20px 20px 40px;
+}
+
+.sitetitle {
+  color: white;
+  font-family: 'Cherry Cream Soda', cursive;
+  font-size: 400%;
+}
+
+.mission {
+  color: Black;
+  font-family: 'Cherry Cream Soda', cursive;
+}
+
+.subtitle {
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+  text-align: center;
+  font-size: 125%;
+}
+
+.pagefooter {
+  background-color: Black;
+  margin-top: 0px;
+  padding: 20px 20px 20px 40px;
+}
+
+.carousel-caption, h5 {
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+}
+
+.card-text {
+  font-family: 'Architects Daughter', cursive;
+}
+
+.hellouser1 {
+  color: orange;
+}
+
+.StripeElement {
+  background-color: white;
+  height: 140px;
+  padding: 10px 12px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

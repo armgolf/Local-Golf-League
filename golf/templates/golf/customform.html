@@ -3,6 +3,9 @@
 
 <head>
   <link rel="stylesheet" href="{% static 'css/golf.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Audiowide" rel="stylesheet">
+
 </head>
 
 {% for rollups in rollups %}
@@ -23,19 +26,26 @@
 {% endfor %}
 
 <script src="https://js.stripe.com/v3/"></script>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <form action="/payment/" method="POST" id="payment-form">{% csrf_token %}
+            <table>{{ form.as_table }}</table>
+            <div class="form-row">
+              <label for="card-element">
+                Credit or debit card
+              </label>
+              <div id="card-element" class="form-control">
 
-  <form action="/payment/" method="POST" id="payment-form">{% csrf_token %}
-    <table>{{ form.as_table }}</table>
-    <div class="form-row">
-      <label for="card-element">
-        Credit or debit card
-      </label>
-      <div id="card-element"></div>
-      <!-- Used to display form errors -->
-      <div id="card-errors" role="alert"></div>
+              </div>
+              <!-- Used to display form errors -->
+              <div id="card-errors" role="alert"></div>
+            </div>
+            <button>Submit Payment</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <button>Submit Payment</button>
-  </form>
 
   <script>
     // Create a Stripe client
@@ -48,11 +58,11 @@
     // (Note that this demo uses a wider set of styles than the guide below.)
     var style = {
       base: {
-        color: '#32325d',
-        lineHeight: '18px',
+        color: 'black',
+        lineHeight: '30px',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
-        fontSize: '16px',
+        fontSize: '20px',
         '::placeholder': {
           color: '#aab7c4'
         }
@@ -111,5 +121,9 @@
   </script>
 
 <a href="{% url 'landingpage' %}">Home</a>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </html>

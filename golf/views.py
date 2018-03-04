@@ -22,7 +22,7 @@ def payment(request):
     if request.method == "POST":
         token = request.POST.get("stripeToken")
         charge = stripe.Charge.create(
-            amount=3700,
+            amount=1200,
             currency="gbp",
             description="Example charge",
             source=token,
@@ -35,3 +35,7 @@ def customform(request):
     rollups = Events.objects.all()
     form = PNumber()
     return render(request, 'golf/customform.html', {'rollups':rollups, 'form': form})
+
+def new(request):
+    form = PNumber(initial={'name': '', 'email': '', 'phone': ''})
+    return render(request, 'golf/new.html', {'form': form})

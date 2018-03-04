@@ -15,8 +15,9 @@ urlpatterns = [
     url(r'^accounts/login/$', auth_views.login, name='login'),
     url(r'^accounts/logout/$', auth_views.logout, name='logout', kwargs={'next_page': 'landingpage'}),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.landingpage, name='landingpage'),
+    url(r'^$', views.new, name='new'),
     url(r'^rollups/$', views.rollups, name='rollups'),
     url(r'^payment/$', views.payment, name='payment'),
-    url(r'^customform/$', views.customform, name='customform'),  
+    url(r'^customform/$', views.customform, name='customform'),
+    url(r'^new/$', views.new, name='new'), 
 ]

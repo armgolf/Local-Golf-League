@@ -1,0 +1,519 @@
+
+<!doctype html>
+{% load staticfiles %}
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter|Audiowide" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>Local Golf League</title>
+  <meta name="description" content="">
+  <link rel="stylesheet" href="{% static 'css/new.css' %}">
+</head>
+
+<body style="text-align:center;">
+  <div class="pageheader">
+    <h1 class="sitetitle"><img class="logo" src="{% static 'images/LGL20.png' %}" width="50"/>  Local Golf League</h1>
+  </div>
+
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'images/still.jpg' %}" alt="First slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>A Fresh Amateur Golf League in Coventry & Warwickshire.</h5>
+          <p> </p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'images/still.jpg' %}" alt="Second slide">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Meet new golfers and play a range of local courses.</h5>
+          <p> </p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="col-xs-12" style="height:50px;"></div>
+
+  <h2 class="mission">Join us for an upcoming golf round:</h2>
+
+  <div class="col-xs-12" style="height:70px;"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <a href="http://www.stonebridgegolf.co.uk" target="_blank"><img class="card-img-top" src="http://web.4imagination.co.uk/stonebridge/wp-content/uploads/2016/07/menu_logo.png" alt="Card image cap"></a>
+          <div class="card-body">
+            <h4 class="card-title">Thursday 29th March 2018</h5>
+              <p class="card-text">Evening round - 4:30pm tee time<br>2 ball better ball<br>All golfers welcome.<br>Location: CV7 7PL<br>Meet outside the pro shop<br>(5 spaces left)</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                £12 - Sign up!
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="exampleModalLongTitle1">Stonebridge, 4:30pm, 29/03/2018</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <script src="https://js.stripe.com/v3/"></script>
+                        <form action="/payment/" method="POST" id="payment-form3">{% csrf_token %}
+                          <table>{{ form.as_table }}</table>
+                          <div class="col-xs-12" style="height:5px;"></div>
+                          <p class="float-left"><strong>Amount: £12.00</strong></p>
+                          <div class="form-row">
+                            <label for="card-element3">
+                              Payment card details:
+                            </label>
+                            <div id="card-element3" class="form-control">
+                            </div>
+                            <!-- Used to display form errors -->
+                            <div id="card-errors3" role="alert"></div>
+                          </div>
+                          <div class="col-xs-12" style="height:10px;"></div>
+                          <button class="btn btn-primary float-right">Submit Payment</button>
+                        </form>
+                      <script>
+                        // Create a Stripe client
+                        var stripe = Stripe('pk_test_zz2EsrQt806WE4Ad2ANX5kuW');
+
+                        // Create an instance of Elements
+                        var elements = stripe.elements();
+
+                        // Custom styling can be passed to options when creating an Element.
+                        // (Note that this demo uses a wider set of styles than the guide below.)
+                        var style = {
+                          base: {
+                            color: 'black',
+                            lineHeight: '30px',
+                            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                            fontSmoothing: 'antialiased',
+                            fontSize: '20px',
+                            '::placeholder': {
+                              color: '#aab7c4'
+                            }
+                          },
+                          invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a'
+                          }
+                        };
+
+                        // Create an instance of the card Element
+                        var card = elements.create('card', {style: style});
+
+                        // Add an instance of the card Element into the `card-element` <div>
+                        card.mount('#card-element3');
+
+                        // Handle real-time validation errors from the card Element.
+                        card.addEventListener('change', function(event) {
+                          var displayError = document.getElementById('card-errors3');
+                          if (event.error) {
+                            displayError.textContent = event.error.message;
+                          } else {
+                            displayError.textContent = '';
+                          }
+                        });
+
+                        // Handle form submission
+                        var form = document.getElementById('payment-form3');
+                        form.addEventListener('submit', function(event) {
+                          event.preventDefault();
+
+                          stripe.createToken(card).then(function(result) {
+                            if (result.error) {
+                              // Inform the user if there was an error
+                              var errorElement = document.getElementById('card-errors2');
+                              errorElement.textContent = result.error.message;
+                            } else {
+                              // Send the token to your server
+                              stripeTokenHandler(result.token);
+                            }
+                          });
+                        });
+
+                        function stripeTokenHandler(token) {
+                          // Insert the token ID into the form so it gets submitted to the server
+                          var form = document.getElementById('payment-form3');
+                          var hiddenInput = document.createElement('input');
+                          hiddenInput.setAttribute('type', 'hidden');
+                          hiddenInput.setAttribute('name', 'stripeToken');
+                          hiddenInput.setAttribute('value', token.id);
+                          form.appendChild(hiddenInput);
+
+                          // Submit the form
+                          form.submit();
+                        }
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <a href="http://www.stonebridgegolf.co.uk" target="_blank"><img class="card-img-top" src="http://web.4imagination.co.uk/stonebridge/wp-content/uploads/2016/07/menu_logo.png" alt="Card image cap"></a>
+          <div class="card-body">
+            <h4 class="card-title">Thursday 5th April 2018</h5>
+            <p class="card-text">Evening round - 4:30pm tee time<br>2 ball better ball<br>All golfers welcome.<br>Location: CV7 7PL<br>Meet outside the pro shop<br>(11 spaces left)</p>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
+              £12 - Sign up!
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle2">Stonebridge, 4:30pm, 05/04/2018</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <script src="https://js.stripe.com/v3/"></script>
+                      <form action="/payment/" method="POST" id="payment-form2">{% csrf_token %}
+                        <table>{{ form.as_table }}</table>
+                        <div class="col-xs-12" style="height:5px;"></div>
+                        <p class="float-left"><strong>Amount: £12.00</strong></p>
+                        <div class="form-row">
+                          <label for="card-element2">
+                            Payment card details:
+                          </label>
+                          <div id="card-element2" class="form-control">
+                          </div>
+                          <!-- Used to display form errors -->
+                          <div id="card-errors2" role="alert"></div>
+                        </div>
+                        <div class="col-xs-12" style="height:10px;"></div>
+                        <button class="btn btn-primary float-right">Submit Payment</button>
+                      </form>
+                    <script>
+                      // Create a Stripe client
+                      var stripe = Stripe('pk_test_zz2EsrQt806WE4Ad2ANX5kuW');
+
+                      // Create an instance of Elements
+                      var elements = stripe.elements();
+
+                      // Custom styling can be passed to options when creating an Element.
+                      // (Note that this demo uses a wider set of styles than the guide below.)
+                      var style = {
+                        base: {
+                          color: 'black',
+                          lineHeight: '30px',
+                          fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                          fontSmoothing: 'antialiased',
+                          fontSize: '20px',
+                          '::placeholder': {
+                            color: '#aab7c4'
+                          }
+                        },
+                        invalid: {
+                          color: '#fa755a',
+                          iconColor: '#fa755a'
+                        }
+                      };
+
+                      // Create an instance of the card Element
+                      var card = elements.create('card', {style: style});
+
+                      // Add an instance of the card Element into the `card-element` <div>
+                      card.mount('#card-element2');
+
+                      // Handle real-time validation errors from the card Element.
+                      card.addEventListener('change', function(event) {
+                        var displayError = document.getElementById('card-errors2');
+                        if (event.error) {
+                          displayError.textContent = event.error.message;
+                        } else {
+                          displayError.textContent = '';
+                        }
+                      });
+
+                      // Handle form submission
+                      var form = document.getElementById('payment-form2');
+                      form.addEventListener('submit', function(event) {
+                        event.preventDefault();
+
+                        stripe.createToken(card).then(function(result) {
+                          if (result.error) {
+                            // Inform the user if there was an error
+                            var errorElement = document.getElementById('card-errors2');
+                            errorElement.textContent = result.error.message;
+                          } else {
+                            // Send the token to your server
+                            stripeTokenHandler(result.token);
+                          }
+                        });
+                      });
+
+                      function stripeTokenHandler(token) {
+                        // Insert the token ID into the form so it gets submitted to the server
+                        var form = document.getElementById('payment-form2');
+                        var hiddenInput = document.createElement('input');
+                        hiddenInput.setAttribute('type', 'hidden');
+                        hiddenInput.setAttribute('name', 'stripeToken');
+                        hiddenInput.setAttribute('value', token.id);
+                        form.appendChild(hiddenInput);
+
+                        // Submit the form
+                        form.submit();
+                      }
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <a href="http://www.stonebridgegolf.co.uk" target="_blank"><img class="card-img-top" src="http://web.4imagination.co.uk/stonebridge/wp-content/uploads/2016/07/menu_logo.png" alt="Card image cap"></a>
+          <div class="card-body">
+            <h4 class="card-title">Thursday 12th April 2018</h5>
+              <p class="card-text">Evening round - 4:30pm tee time<br>2 ball better ball<br>All golfers welcome.<br>Location: CV7 7PL<br>Meet outside the pro shop<br>(15 spaces left)</p>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter3">
+                £12 - Sign up!
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="exampleModalLongTitle3">Stonebridge, 4:30pm, 12/04/2018</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <script src="https://js.stripe.com/v3/"></script>
+                        <form action="/payment/" method="POST" id="payment-form">{% csrf_token %}
+                          <table>{{ form.as_table }}</table>
+                          <div class="col-xs-12" style="height:5px;"></div>
+                          <p class="float-left"><strong>Amount: £12.00</strong></p>
+                          <div class="form-row">
+                            <label for="card-element">
+                              Payment card details:
+                            </label>
+                            <div id="card-element" class="form-control">
+                            </div>
+                            <!-- Used to display form errors -->
+                            <div id="card-errors" role="alert"></div>
+                          </div>
+                          <div class="col-xs-12" style="height:10px;"></div>
+                          <button class="btn btn-primary float-right">Submit Payment</button>
+                        </form>
+                      <script>
+                        // Create a Stripe client
+                        var stripe = Stripe('pk_test_zz2EsrQt806WE4Ad2ANX5kuW');
+
+                        // Create an instance of Elements
+                        var elements = stripe.elements();
+
+                        // Custom styling can be passed to options when creating an Element.
+                        // (Note that this demo uses a wider set of styles than the guide below.)
+                        var style = {
+                          base: {
+                            color: 'black',
+                            lineHeight: '30px',
+                            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                            fontSmoothing: 'antialiased',
+                            fontSize: '20px',
+                            '::placeholder': {
+                              color: '#aab7c4'
+                            }
+                          },
+                          invalid: {
+                            color: '#fa755a',
+                            iconColor: '#fa755a'
+                          }
+                        };
+
+                        // Create an instance of the card Element
+                        var card = elements.create('card', {style: style});
+
+                        // Add an instance of the card Element into the `card-element` <div>
+                        card.mount('#card-element');
+
+                        // Handle real-time validation errors from the card Element.
+                        card.addEventListener('change', function(event) {
+                          var displayError = document.getElementById('card-errors');
+                          if (event.error) {
+                            displayError.textContent = event.error.message;
+                          } else {
+                            displayError.textContent = '';
+                          }
+                        });
+
+                        // Handle form submission
+                        var form = document.getElementById('payment-form');
+                        form.addEventListener('submit', function(event) {
+                          event.preventDefault();
+
+                          stripe.createToken(card).then(function(result) {
+                            if (result.error) {
+                              // Inform the user if there was an error
+                              var errorElement = document.getElementById('card-errors');
+                              errorElement.textContent = result.error.message;
+                            } else {
+                              // Send the token to your server
+                              stripeTokenHandler(result.token);
+                            }
+                          });
+                        });
+
+                        function stripeTokenHandler(token) {
+                          // Insert the token ID into the form so it gets submitted to the server
+                          var form = document.getElementById('payment-form');
+                          var hiddenInput = document.createElement('input');
+                          hiddenInput.setAttribute('type', 'hidden');
+                          hiddenInput.setAttribute('name', 'stripeToken');
+                          hiddenInput.setAttribute('value', token.id);
+                          form.appendChild(hiddenInput);
+
+                          // Submit the form
+                          form.submit();
+                        }
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-xs-12" style="height:70px;"></div>
+
+
+  <div>
+    <h2 class="mission">The Details:</h2>
+  </div>
+  <div>
+    <p>A maximum of 16 golfers per event (4 tee times).</p>
+    <p>Arrive at least 10mins before tee time.</p>
+    <p>Price includes the green fee.</p>
+    <p>Upon arrival, golfers will be split into 3-4 ball groups.</p>
+    <p>We will play two ball better ball match play and individual stableford scores can also be recorded.</p>
+    <p>Two ball better ball match play is a social competition format - teams of two players take the best individual score of the pair on a hole, if this is better than the other pair, they win the hole.</p>
+    <p>Beginners will play in a group together with an experienced golfer (amateur golf tips can be provided if desired).</p>
+    <p>Please advise an appropriate handicap - or 28 if you have not played with a handicap before.</p>
+    <p>Your handicap will decrease/increase by 1 shot if you win/lose a match.</p>
+    <p>The individual winner of all golfers at the event (via stableford score) will get their next round free.</p>
+  </div>
+
+  <div class="col-xs-12" style="height:50px;"></div>
+
+  <p></p>
+
+  <div class="pagefooter">
+    <p class="subtitle">&copy; Local Golf League in Coventry & Warwickshire. est. 2017.｜<a href="" class="hellouser1" data-toggle="modal" data-target="#exampleModalCenterContact">Contact</a>｜<a href="" class="hellouser1" data-toggle="modal" data-target="#exampleModalCenterPrivacy">Privacy Policy</a></p>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenterContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLongTitle1">Contact Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Please email questions/issues/requests to contact@localgolfleague.co.uk
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenterPrivacy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="mission" id="exampleModalLongTitle1">Privacy Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="card-text"><i>Date of policy: 04/03/2018</i></p>
+
+          <h2 class="mission">Information Collection and Use</h1>
+
+          <p class="card-text">Name, email and phonenumber are requested to signup for a golf event.<br>
+            The name and email are used to identify the golfer at an event. Phone number is requiested to enable communication upon arrival at an event.<br>
+            Customer payment details are not collected by Local Golf League and are handled entirely by the online payment provider <a href="https://stripe.com/gb" target="_blank">Stripe</a>.
+          </p>
+
+          <h2 class="mission">Information Sharing and Disclosure</h1>
+
+          <p class="card-text">Local Golf League does not share data in the "Information Collection and Use" section above with 3rd parties.<br>
+
+          We reserve the right to disclose your personally identifiable information as required by law or when we believe that disclosure is necessary to protect person,<br>
+          property, our rights and/or to comply with a judicial proceeding, court order, or legal process served on the Web Site and/or as permitted by applicable laws.</p>
+
+          <h1 class="mission">Material Changes since Effective Date</h1>
+
+          <p class="card-text">None.</p>
+
+          <p class="card-text">(Any changes to the privacy policy will be recorded here).</p>
+
+          <h1 class="mission">Contact Us</h1>
+
+          <p class="card-text">You can let us know at any time if you would like your personally identifiable information to be deleted, by sending an email to contact@localgolfleague.co.uk</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+
+</html>
